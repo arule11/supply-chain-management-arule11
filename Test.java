@@ -1,12 +1,9 @@
-import java.lang.System;
 
 public class Test{
 
-System.out.println("Hello World");
-//This is another test commit
+public static void main (String [] args){
+    System.out.println("Hello World!");
 
-//Question Mark?
-//Testing
-
+}
 }
 
