@@ -2,118 +2,71 @@ package edu.ucalgary.ensf409;
 
 
 public class Furniture{
-
-  public final String DBURL; //store the database url information
-  public final String USERNAME; //store the user's account username
-  public final String PASSWORD; //store the user's account password
-
-  private Connection dbConnect;
-  private ResultSet results;
-
-
-  public Registration(String url, String username, String pswd){
-    this.DBURL = url;
-    this.USERNAME = username;
-    this.PASSWORD = pswd;
-  }
-
-  public void initializeConnection(){
-      try{
-        dbConnect = DriverManager.getConnection(getDburl(), getUsername(), getPassword());
-      } catch (SQLException e) {
-          e.printStackTrace();
-      }
-  }
   
-  /**
-  * Retrieves the database URL
-  * @return Returns a String
-  */
-  public String getDburl(){
-    return this.DBURL;
-  }
+  public static void WriteOrderForm(String orgOrder, String[] ids, String price){
+    String outputFile = "orderform.txt";
+    File toWrite = new File(outputFile);
+    try{
+      if(toWrite.exists() && toWrite.isFile()){
+        toWrite.delete();
+      }
+      toWrite.createNewFile();
 
-  /**
-  * Retrieves the MySQL username
-  * @return Returns a String
-  */
-  public String getUsername(){
-    return this.USERNAME;
-  }
+      FileWriter writer = new FileWriter(outputFile);
+      BufferedWriter out = new BufferedWriter(writer);
+      //out.write();
+      out.write("Furniture Order Form \n\n");
+      out.write("Faculty Name:\n");
+      out.write("Contact:\n");
+      out.write("Date:\n\n");
 
-  /**
-  * Retrieves the MySQL password
-  * @return Returns a String
-  */
-  public String getPassword(){
-    return this.PASSWORD;
-  }
+      out.write("Original Request: " + orgOrder + "\n\n");
+      out.write("Items Ordered");
+      for(String i : ids){
+        out.write("\nID: " + i);
+      }
+      out.write("\n\nTotal Price: " + price);
 
-
-checkChair(String type){
-  try{
-    Statement myStmt = dbConnect.createStatement();
-    results = myStmt.executeQuery("SELECT * FROM CHAIR WHERE type = '" + type + "'");
-
-    ArrayList<String> chairs = new ArrayList<String>();
-
-    while (results.next()){
-      // if(results.getString("Legs").equals("Y")){
-      // results.getString("ID");
-      // }
-
+      out.flush();
+      out.close();
+    }catch(Exception e){
+      System.out.println(e);
+      System.exit(0);
     }
-    ArrayList<String> chairs = new ArrayList<String>();
-    StringBuffer row = new StringBuffer();
-    row.append(results.getString("ID") + "=" + results.getString("Legs") + "," + results.getString("Arms") + "," + results.getString("Seat") + "," + results.getString("Cushion"));
-
-
-  }catch (SQLException ex){
-    ex.printStackTrace();
   }
-}
 
-checkDesk(String type){
-  try{
-    Statement myStmt = dbConnect.createStatement();
-    results = myStmt.executeQuery("SELECT * FROM DESK WHERE type = '" + type + "'");
-
-    if(!results.next()){
-      throw new IllegalArgumentException();
+  public void printOutput(){
+    StringBuffer names = new StringBuffer();
+    try{
+      Statement myStmt = dbConnect.createStatement();
+      results = myStmt.executeQuery("SELECT * FROM MANUFACTURER");
+  
+      while (results.next()){
+        if(results.isLast()){
+          names.append("and "+ results.getString("Name"));
+        }else{
+          names.append(results.getString("Name") + ", " );
+        }
+      }
+      myStmt.close();
+    } catch(SQLException ex) {
+        ex.printStackTrace();
     }
-  }catch (SQLException ex){
-    ex.printStackTrace();
+    System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are "
+            + names.toString());
   }
-}
 
-
-checkFiling(String type){
-  try{
-    Statement myStmt = dbConnect.createStatement();
-    results = myStmt.executeQuery("SELECT * FROM FILING WHERE type = '" + type + "'");
-
-    if(!results.next()){
-      throw new IllegalArgumentException();
+  public static void printOutput(String[] ids, String price){
+    System.out.print("Purchase ");
+    for(int i = 0; i < ids.length; i++){
+      if(i == ids.length - 1){
+        System.out.print("and " + ids[i] );
+      }else{
+        System.out.print(ids[0] + " ");
+      }
     }
-  }catch (SQLException ex){
-    ex.printStackTrace();
+    System.out.println(" for " + price);
   }
-
-}
-
-checkLamp(String type){
-  try{
-    Statement myStmt = dbConnect.createStatement();
-    results = myStmt.executeQuery("SELECT * FROM LAMP WHERE type = '" + type + "'");
-
-    if(!results.next()){
-      throw new IllegalArgumentException();
-    }
-  }catch (SQLException ex){
-    ex.printStackTrace();
-  }
-
-}
 
 
 }
