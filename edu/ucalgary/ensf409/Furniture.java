@@ -2,6 +2,9 @@ package edu.ucalgary.ensf409;
 
 
 public class Furniture{
+  private String furniture;
+  private String furnitureType;
+  private int itemAmount;
   
   public static void WriteOrderForm(String orgOrder, String[] ids, String price){
     String outputFile = "orderform.txt";
