@@ -7,14 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
+
+
+
+
+
 public class FurnitureDatabase {
-    private final String DBURL;
-    private final String USERNAME = "scm";
-    private final String PASSWORD = "ensf409";
+    private final String DBURL; //Database URL
+    private final String USERNAME = "scm"; //MySQL username
+    private final String PASSWORD = "ensf409"; //MySQL password
     private Connection dbConnect;
     private ResultSet results;
-    private LinkedList furnitureList = new LinkedList();
-
+    private LinkedList furnitureList = new LinkedList(); 
+    private LinkedList listSortedByType = new LinkedList();
 
     public FurnitureDatabase(String URL){
         this.DBURL = URL;
@@ -30,7 +35,7 @@ public class FurnitureDatabase {
         }
     }
      
-    public void createList(String Table){
+    public void createList(String Table){ //Converts the specified database table into a linked list
         try{
             Statement myStmt = dbConnect.createStatement();
             results = myStmt.executeQuery("SELECT * FROM "+Table);
@@ -82,11 +87,13 @@ public class FurnitureDatabase {
                     temp.component2 = component2.toString();
                     temp.component3 = component3.toString();
                 }
+                countComponents(temp);
                 furnitureList.add(temp);
             }
         } catch(SQLException ex){
             ex.printStackTrace();
         }
+        
     }
 
     public int findAveragePrice(){
@@ -101,26 +108,94 @@ public class FurnitureDatabase {
 
     public void countComponents(Node arg){
         //Counts how many components a piece of furniture has
+        if(arg.component1 != (null)&&arg.component1.equals("Y")){
+            arg.componentCount+=1;
+        }
+        if(arg.component2!= (null)&&arg.component2.equals("Y")){
+            arg.componentCount+=1;
+        }
+        if(arg.component3!= (null)&&arg.component3.equals("Y")){
+            arg.componentCount+=1;
+        }
+        if(arg.component4!= (null)&&arg.component4.equals("Y")){
+            arg.componentCount+=1;
+        }
+        
+    }
+ 
+
+    public void sortByType(String type){ //Creates a linked list containing the furniture type specified
+        for(int i = 1; i <= furnitureList.size(); i++){
+            furnitureList.moveToPos(i);
+            if(furnitureList.currentElement.Type.equals(type)){
+                Node temp = new Node();
+                temp.ID = furnitureList.currentElement.ID;
+                temp.Type = furnitureList.currentElement.Type;
+                temp.Price = furnitureList.currentElement.Price;
+                temp.component1 = furnitureList.currentElement.component1;
+                temp.component2 = furnitureList.currentElement.component2;
+                temp.component3 = furnitureList.currentElement.component3;
+                temp.component4 = furnitureList.currentElement.component4;
+                temp.componentCount = furnitureList.currentElement.componentCount;
+                listSortedByType.add(temp);
+            }
+        }
+    }
+
+    public void findCombinations(){ //W.I.P
+        
     }
    
 
     public static void main(String[] args){
         FurnitureDatabase test = new FurnitureDatabase("jdbc:mysql://localhost/inventory");
         test.initializeConnection();
-        test.createList("filing");
+        test.createList("chair");
+        test.sortByType("Task");
         test.furnitureList.currentElement = test.furnitureList.head;
+        test.listSortedByType.currentElement = test.listSortedByType.head;
         for(int i = 0; test.furnitureList.currentElement != null; i++){
             System.out.print(test.furnitureList.currentElement.ID+" ");
             System.out.print(test.furnitureList.currentElement.Type+" ");
             System.out.print(test.furnitureList.currentElement.Price+" ");
+            if(test.furnitureList.currentElement.component1!=null){
             System.out.print(test.furnitureList.currentElement.component1+" ");
+            }
+            if(test.furnitureList.currentElement.component2!=null){
             System.out.print(test.furnitureList.currentElement.component2+" ");
+            }
+            if(test.furnitureList.currentElement.component3!=null){
             System.out.print(test.furnitureList.currentElement.component3+" ");
+            }
+            if(test.furnitureList.currentElement.component4!=null){
             System.out.print(test.furnitureList.currentElement.component4+" ");
+            }
+            System.out.print(test.furnitureList.currentElement.componentCount+" ");
             System.out.print('\n');
+            System.out.print('\n');
+            
             test.furnitureList.currentElement = test.furnitureList.currentElement.nextElement;
         }
-        System.out.println(test.findAveragePrice());
+        for(int i = 0; test.listSortedByType.currentElement != null; i++){
+            System.out.print(test.listSortedByType.currentElement.ID+" ");
+            System.out.print(test.listSortedByType.currentElement.Type+" ");
+            System.out.print(test.listSortedByType.currentElement.Price+" ");
+            if(test.listSortedByType.currentElement.component1!=null){
+            System.out.print(test.listSortedByType.currentElement.component1+" ");
+            }
+            if(test.listSortedByType.currentElement.component2!=null){
+            System.out.print(test.listSortedByType.currentElement.component2+" ");
+            }
+            if(test.listSortedByType.currentElement.component3!=null){
+            System.out.print(test.listSortedByType.currentElement.component3+" ");
+            }
+            if(test.listSortedByType.currentElement.component4!=null){
+            System.out.print(test.listSortedByType.currentElement.component4+" ");
+            }
+            System.out.print(test.listSortedByType.currentElement.componentCount+" ");
+            System.out.print('\n');
+            test.listSortedByType.currentElement = test.listSortedByType.currentElement.nextElement;
+        }
 
     }
 }
@@ -134,7 +209,7 @@ class Node{
     protected String component2;
     protected String component3;
     protected String component4;
-    private int componentCount;
+    protected int componentCount = 0;
     protected Node nextElement;     //Contains the element right after the current element
   
 }
