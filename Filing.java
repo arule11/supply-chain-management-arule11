@@ -17,5 +17,18 @@ public class Filing extends Furniture{
     this.cabinet = cab;
 
   }
+  
+  public String getRails(){
+    return this.rails;
+  }
 
+  public String getDrawers(){
+    return this.drawers;
+  }
+  
+  public String getCabinet(){
+    return this.cabinet;
+  }
+   
+  
 }
