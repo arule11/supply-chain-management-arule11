@@ -15,5 +15,18 @@ public class Desk extends Furniture{
     this.top = top;
     this.drawer = draw;
   }
-
+  
+  
+  public String getLegs(){
+    return this.legs;
+  }
+  
+  public String getArms(){
+    return this.arms;
+  }
+  
+  public String getDrawer(){
+    return this.drawer;
+  }
+  
 }
