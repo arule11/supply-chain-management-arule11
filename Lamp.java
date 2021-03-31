@@ -14,5 +14,13 @@ public class Lamp extends Furniture{
     this.base = base;
     this.bulb = bulb;
   }
+  
+  public String getBase(){
+    return this.base;
+  }
+  
+  public String getBub(){
+    return this.bulb;
+  }
 
 }
