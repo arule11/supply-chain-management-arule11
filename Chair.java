@@ -21,17 +21,18 @@ public class Chair extends Furniture{
   public String getLegs(){
     return this.legs;
   }
-  
+
   public String getArms(){
     return this.arms;
   }
-  
+
   public String getSeat(){
     return this.seat;
   }
-  
+
   public String getCushion(){
     return this.cushion;
   }
+
 
 }

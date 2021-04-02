@@ -15,9 +15,8 @@ public class Filing extends Furniture{
     this.rails = rail;
     this.drawers = draw;
     this.cabinet = cab;
-
   }
-  
+
   public String getRails(){
     return this.rails;
   }
@@ -25,10 +24,9 @@ public class Filing extends Furniture{
   public String getDrawers(){
     return this.drawers;
   }
-  
+
   public String getCabinet(){
     return this.cabinet;
   }
-   
-  
+
 }
