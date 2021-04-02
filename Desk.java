@@ -21,8 +21,8 @@ public class Desk extends Furniture{
     return this.legs;
   }
   
-  public String getArms(){
-    return this.arms;
+  public String getTop(){
+    return this.top;
   }
   
   public String getDrawer(){
