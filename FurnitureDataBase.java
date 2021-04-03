@@ -30,15 +30,24 @@ public class FurnitureDataBase{
     }
 
 
-    public FurnitureDataBase(String type, String request, int number){
+  /**
+  * Set the variables furnitureRequest, requestType, and requestNum based on the given arguments
+  * @param type : the specified specific type of furniture requested 
+  * @param request : the general type of furniture requested 
+  * @param number : the number of furniture items requested 
+  */
+  public FurnitureDataBase(String type, String request, int number){
     //public FurnitureDataBase(String request, String type, int number){
-      this.furnitureRequest = request;
-      this.requestType = type;
-      this.requestNum = number;
-      foundFurniture = new ArrayList<Furniture>();
-    }
+    this.furnitureRequest = request;
+    this.requestType = type;
+    this.requestNum = number;
+    foundFurniture = new ArrayList<Furniture>();
+  }
 
 
+  /**
+  * Creates a connection to the database
+  */
   public void initializeConnection(){
       try{
           dbConnect = DriverManager.getConnection(DBURL, USERNAME, PASSWORD);
