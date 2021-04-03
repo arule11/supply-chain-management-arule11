@@ -6,28 +6,28 @@ import java.io.*;
 
 public class FurnitureDataBase{
 
-    private final String DBURL = "jdbc:mysql://localhost/inventory"; //Database URL
-    private final String USERNAME = ""; //MySQL username
-    private final String PASSWORD = ""; //MySQL password
-    private Connection dbConnect;
-    private ResultSet results;
+  private final String DBURL = "jdbc:mysql://localhost/inventory"; //Database URL
+  private final String USERNAME = ""; //MySQL username
+  private final String PASSWORD = ""; //MySQL password
+  private Connection dbConnect;
+  private ResultSet results;
 
-    static String furnitureRequest;
-    static String requestType;
-    static int requestNum;
-    ArrayList<Furniture> foundFurniture;
+  static String furnitureRequest;
+  static String requestType;
+  static int requestNum;
+  ArrayList<Furniture> foundFurniture;
 
-    public String getFurnitureRequest(){
-      return this.furnitureRequest;
-    }
-
-    public String getRequestType(){
-      return this.requestType;
-    }
-
-    public int getRequestNum(){
-      return this.requestNum;
-    }
+    // public String getFurnitureRequest(){
+  //   return this.furnitureRequest;
+  // }
+  // 
+  // public String getRequestType(){
+  //   return this.requestType;
+  // }
+  // 
+  // public int getRequestNum(){
+  //   return this.requestNum;
+  // }
 
 
   /**
