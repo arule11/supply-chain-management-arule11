@@ -24,7 +24,4 @@ public class Furniture{
     return this.price;
   }
 
-  // public String priceToString(){
-  //     return "$" + price;
-  // }
 }
