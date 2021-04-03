@@ -14,7 +14,7 @@ In Terminal:
 1. Clone entire directory to a new desktop folder.
 2. In the console, direct to the desktop folder using cd < filepath >
 3. To compile, use command --> javac *.java
-4. To run, use command --> java Main <category> <furniture> <amount>
+4. To run, use command --> java Main <category> <furniture> <amount> <br /> 
 (example: Main mesh chair, 2)
 
 ## UML Diagram
