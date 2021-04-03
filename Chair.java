@@ -1,0 +1,42 @@
+//package edu.ucalgary.ensf409;
+
+public class Chair extends Furniture{
+
+  private String legs;
+  private String arms;
+  private String seat;
+  private String cushion;
+  private static String[] manufacturersID = new String[]{"002", "003", "004", "005"};
+
+
+  public Chair(String id, String type, String leg, String arm, String seat, String cush, int price){
+    super(id, type, price);
+
+    this.legs = leg;
+    this.arms = arm;
+    this.seat = seat;
+    this.cushion = cush;
+  }
+
+  public String getLegs(){
+    return this.legs;
+  }
+
+  public String getArms(){
+    return this.arms;
+  }
+
+  public String getSeat(){
+    return this.seat;
+  }
+
+  public String getCushion(){
+    return this.cushion;
+  }
+
+  public static String[] getManufacturers(){
+    return manufacturersID;
+  }
+
+
+}
