@@ -6,8 +6,6 @@ public class Lamp extends Furniture{
   private String bulb;
   private static String[] manufacturersID = new String[]{"002", "004", "005"};
 
-  // public Lamp(){
-  // }
 
   public Lamp(String id, String type, String base, String bulb, int price){
     super(id, type, price);
