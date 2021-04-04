@@ -2,9 +2,9 @@
 
 ## Contributors
 Athena McNeil-Roberts <br /> 
-Nicolas <br /> 
+Nicolas tEng <br /> 
 Ivan Lou Tompong <br /> 
-Alden <br /> 
+Alden Lien <br /> 
 
 ## Problem Description
 Design an application to calculate the cheapest combination of available inventory items that can be used to fill a specific order. For example, if a faculty needs one executive chair, the application should be able to calculate the most cost-effective way of assembling the chair from other used furniture items.
