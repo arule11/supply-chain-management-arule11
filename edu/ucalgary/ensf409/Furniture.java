@@ -2,74 +2,44 @@ package edu.ucalgary.ensf409;
 
 
 public class Furniture{
-  private String furniture;
-  private String furnitureType;
-  private int itemAmount;
-  
-  public static void WriteOrderForm(String orgOrder, String[] ids, String price){
-    String outputFile = "orderform.txt";
-    File toWrite = new File(outputFile);
-    try{
-      if(toWrite.exists() && toWrite.isFile()){
-        toWrite.delete();
-      }
-      toWrite.createNewFile();
+  private final String ID;
+  private String type;
+  private int price;
 
-      FileWriter writer = new FileWriter(outputFile);
-      BufferedWriter out = new BufferedWriter(writer);
-      //out.write();
-      out.write("Furniture Order Form \n\n");
-      out.write("Faculty Name:\n");
-      out.write("Contact:\n");
-      out.write("Date:\n\n");
 
-      out.write("Original Request: " + orgOrder + "\n\n");
-      out.write("Items Ordered");
-      for(String i : ids){
-        out.write("\nID: " + i);
-      }
-      out.write("\n\nTotal Price: " + price);
-
-      out.flush();
-      out.close();
-    }catch(Exception e){
-      System.out.println(e);
-      System.exit(0);
-    }
+  /**
+   * Sets the variables ID, type, and price with the following corresponding arguments.
+   * @param id : ID used to identify the furniture
+   * @param type : The type of furniture requested; Can be a chair, desk, filing, or lamp
+   * @param price : The price of the item
+   */
+  public Furniture(String id, String type, int price){
+    this.ID = id;
+    this.type = type;
+    this.price = price;
   }
 
-  public void printOutput(){
-    StringBuffer names = new StringBuffer();
-    try{
-      Statement myStmt = dbConnect.createStatement();
-      results = myStmt.executeQuery("SELECT * FROM MANUFACTURER");
-  
-      while (results.next()){
-        if(results.isLast()){
-          names.append("and "+ results.getString("Name"));
-        }else{
-          names.append(results.getString("Name") + ", " );
-        }
-      }
-      myStmt.close();
-    } catch(SQLException ex) {
-        ex.printStackTrace();
-    }
-    System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are "
-            + names.toString());
+
+
+  /**
+   * @return Returns the variable ID
+   */
+  public String getID(){
+    return this.ID;
   }
 
-  public static void printOutput(String[] ids, String price){
-    System.out.print("Purchase ");
-    for(int i = 0; i < ids.length; i++){
-      if(i == ids.length - 1){
-        System.out.print("and " + ids[i] );
-      }else{
-        System.out.print(ids[0] + " ");
-      }
-    }
-    System.out.println(" for " + price);
+  /**
+   * @return Returns the variable type
+   */
+  public String getType(){
+    return this.type;
   }
 
+  /**
+   * @return Returns the price
+   */
+  public int getPrice(){
+    return this.price;
+  }
 
 }
