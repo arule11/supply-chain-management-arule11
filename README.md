@@ -14,13 +14,11 @@ In Terminal:
 1. Clone entire directory to a new desktop folder.
 2. In the console, direct to the desktop folder using cd < filepath >
 4. To compile, use command --> javac -cp .:lib/mysql-connector-java-8.0.23.jar:. *.java
-5. To run, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. Main <category> <furniture> <amount> 
-
-
+5. To run, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. Main < category > < furniture > < amount > <br /> 
 (example: Main mesh chair, 2)
 
 ## Requirements
-JDK
+JDK <br /> 
 MySQL (mysql-connector-java-8.0.23.jar)
 
 ## UML Diagram
