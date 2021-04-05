@@ -12,9 +12,10 @@ Design an application to calculate the cheapest combination of available invento
 ## To Run
 In Terminal:
 1. Clone entire directory to a new desktop folder.
-2. In the console, direct to the desktop folder using cd < filepath >
-4. To compile, use command --> javac -cp .:lib/mysql-connector-java-8.0.23.jar:. *.java
-5. To run, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. Main < category > < furniture > < amount > <br /> 
+2. Add to this folder a lib folder containing MySQL builder files.
+3. In the console, direct to the desktop folder using cd < filepath >
+4. To compile, use command --> javac -cp .:lib/mysql-connector-java-8.0.23.jar:. edu/ucalgary/ensf409/*.java
+5. To run, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.Main < category > < furniture > < amount > <br /> 
 (example: Main mesh chair, 2)
 
 ## Requirements
