@@ -22,3 +22,4 @@ JDK <br />
 MySQL (mysql-connector-java-8.0.23.jar)
 
 ## UML Diagram
+![Image description](https://github.com/March-27-Hackathon/supply-chain-management-arule11/blob/main/Project%20UML.png)
