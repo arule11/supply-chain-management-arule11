@@ -7,8 +7,8 @@ import java.io.*;
 public class FurnitureDataBase{
 
   private final String DBURL = "jdbc:mysql://localhost/inventory"; //Database URL
-  private final String USERNAME = ""; //MySQL username
-  private final String PASSWORD = ""; //MySQL password
+  private final String USERNAME = "scm"; //MySQL username
+  private final String PASSWORD = "ensf409"; //MySQL password
   private Connection dbConnect;
   private ResultSet results;
 
