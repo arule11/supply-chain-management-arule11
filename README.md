@@ -12,7 +12,7 @@ Design an application to calculate the cheapest combination of available invento
 ## To Run
 In Terminal:
 1. Clone entire directory to a new desktop folder.
-2. Add to this folder a lib folder containing MySQL builder files.
+2. Add to this folder a lib folder containing MySQL connector files.
 3. In the console, direct to the desktop folder using cd < filepath >
 4. To compile, use command --> javac -cp .:lib/mysql-connector-java-8.0.23.jar:. edu/ucalgary/ensf409/*.java
 5. To run, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.Main < category > < furniture > < amount > <br /> 
@@ -20,7 +20,9 @@ In Terminal:
 
 ## Requirements
 JDK <br /> 
-MySQL (mysql-connector-java-8.0.23.jar)
+MySQL
+ - Download MySQL at : <https://dev.mysql.com/doc/mysql-getting-started/en/>
+ - Download connector files at : <https://dev.mysql.com/downloads/connector/j/>
 
 ## UML Diagram
 ![Image description](https://github.com/March-27-Hackathon/supply-chain-management-arule11/blob/main/Project%20UML.png)
