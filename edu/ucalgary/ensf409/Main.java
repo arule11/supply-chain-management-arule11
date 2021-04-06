@@ -1,44 +1,99 @@
 /**
 @author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
-          Nicolas Teng : 
+          Nicolas Teng :
           Ivan Lou Tompong :
-          Alden Lien : 
-@version 1.3
+          Alden Lien :
+@version 1.4
 @since 1.0
 */
 
 package edu.ucalgary.ensf409;
 
 import java.util.regex.*;
+import java.util.Scanner;
 
 public class Main{
+  static String[] arguments = new String[3];
 
   public static void main(String[] args) {
-    if(args.length < 3){
-      System.out.println("Usage: Main <category> <furniture> <amount>");
-      System.exit(1);
-    }
-    
-    String type = createArg(args[1]);
+    Scanner reader = new Scanner(System.in);
+    System.out.println("Welcome to Group62 Supply Chain Management.\n Please type your furniture request <category> <furniture> <amount>\n (example: mesh chair, 1)");
 
-    FurnitureDataBase item = new FurnitureDataBase(args[0], type, Integer.parseInt(args[2]));
-    item.initializeConnection();
-    item.addFurniture();
-    item.run();
+    boolean check = true;
+    while(check){
+      String order = "";
+        try {
+        	order = reader.nextLine();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+        getFirstArg(order);
+
+        boolean valid = true;
+        for(int i = 0; i < arguments.length;i++){
+          if(arguments[i] == null){
+            valid = false;
+          }
+        }
+
+        if(!valid){
+          System.out.println("Invalid number of arguments. Please try again.\nPlease type your furniture request (example: mesh chair, 1)");
+        }else{
+          check = false;
+        }
+      }
+
+      FurnitureDataBase item = new FurnitureDataBase(arguments[0], arguments[1], Integer.parseInt(arguments[2]));
+      item.initializeConnection();
+      item.addFurniture();
+      item.run();
   }
 
   /**
-  * Crops the argument of furniture type to just the name not including any commas
-  * @param type : the specified argument to crop 
-  * @return Returns a String
+  * Gets the first argument for the order (the specific furniture type) and removes it from the order param
+  * @param type : the order as typed by the user
   */
-  public static String createArg(String type){
-    Pattern pattern = Pattern.compile("[a-zA-Z]{4,6}");
-    Matcher matcher = pattern.matcher(type);
+  public static void getFirstArg(String order){
+    Pattern pattern = Pattern.compile("^[a-zA-Z]+");
+    Matcher matcher = pattern.matcher(order);
+    String arg0;
+
     if(matcher.find()){
-      return matcher.group();
+      arg0 = matcher.group();
+      arguments[0] = arg0;
+      getSecondArg(matcher.replaceFirst(""));
     }
-    return "";
+  }
+
+  /**
+  * Gets the second argument for the order (the general furniture type) and removes it from the order param
+  * @param type : the cropped order as typed by the user
+  */
+  public static void getSecondArg(String order){
+    Pattern pattern = Pattern.compile("[a-zA-Z]+");
+    Matcher matcher = pattern.matcher(order);
+    String arg1;
+
+    if(matcher.find()){
+      arg1 = matcher.group();
+      arguments[1] = arg1;
+      getThirdArg(matcher.replaceFirst(""));
+    }
+  }
+
+  /**
+  * Gets the third argument for the order (the reqested number of furniture)
+  * @param type : the cropped order as typed by the user
+  */
+  public static void getThirdArg(String order){
+    Pattern pattern = Pattern.compile("0|[1-9]+");
+    Matcher matcher = pattern.matcher(order);
+    String arg2;
+
+    if(matcher.find()){
+      arg2 = matcher.group();
+      arguments[2] = arg2;
+    }
   }
 
 }
