@@ -181,8 +181,6 @@ public class FurnitureDataBase{
     }
     return allsubsets;
   }
-/////// TRY TO REDO THIS CODE ^^^^^^^^^^
-
 
 
   /**
@@ -470,7 +468,7 @@ public class FurnitureDataBase{
     }
     System.out.println(" for $" + price + ".");
     // create order form
-    WriteOrderForm(purchased, price);
+    writeOrderForm(purchased, price);
   }
 
 
@@ -479,7 +477,7 @@ public class FurnitureDataBase{
   * @param purchased : the ArrayList of Lists of Furniture containing all purchased items
   * @param price : the total price of all the items purchased
   */
-  public static void WriteOrderForm(ArrayList<ArrayList<Furniture>> purchased, int price){
+  public static void writeOrderForm(ArrayList<ArrayList<Furniture>> purchased, int price){
     String outputFile = "orderform.txt";
     File toWrite = new File(outputFile);
     ArrayList<String> ids = new ArrayList<String>();
