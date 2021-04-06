@@ -16,8 +16,8 @@ import java.io.*;
 public class FurnitureDataBase{
 
   private final String DBURL = "jdbc:mysql://localhost/inventory"; //Database URL
-  private final String USERNAME = ""; //MySQL username
-  private final String PASSWORD = ""; //MySQL password
+  private final String USERNAME = "scm"; //MySQL username
+  private final String PASSWORD = "ensf409"; //MySQL password
   protected Connection dbConnect;
   protected ResultSet results;
 
@@ -436,10 +436,10 @@ public class FurnitureDataBase{
         ex.printStackTrace();
     }
     // print failed output message to console
-    System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are ");
+    System.out.println("\nOrder cannot be fulfilled based on current inventory. Suggested manufacturers are ");
     for(int j = 0; j < names.size(); j++){
       if(j == names.size() - 1){
-        System.out.println("and " + names.get(j) + ".");
+        System.out.println("and " + names.get(j) + ".\n");
       }else{
         System.out.print(names.get(j) + ", ");
       }
@@ -453,7 +453,7 @@ public class FurnitureDataBase{
   */
   public static void printOutput(ArrayList<ArrayList<Furniture>> purchased){
     int price = 0;
-    System.out.print("Purchase ");
+    System.out.print("\nPurchase ");
     for(int i = 0; i < purchased.size(); i++){
       price = price + getComboPrice(purchased.get(i));
       for(int j = 0; j < purchased.get(i).size(); j++){
@@ -466,7 +466,7 @@ public class FurnitureDataBase{
         }
       }
     }
-    System.out.println(" for $" + price + ".");
+    System.out.println(" for $" + price + ".\n");
     // create order form
     writeOrderForm(purchased, price);
   }
