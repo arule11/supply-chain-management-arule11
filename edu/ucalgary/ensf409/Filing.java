@@ -1,3 +1,12 @@
+/**
+@author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+          Nicolas Teng : 
+          Ivan Lou Tompong :
+          Alden Lien : 
+@version 1.3
+@since 1.0
+*/
+
 package edu.ucalgary.ensf409;
 
 public class Filing extends Furniture{
