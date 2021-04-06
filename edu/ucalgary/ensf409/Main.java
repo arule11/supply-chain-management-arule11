@@ -17,7 +17,7 @@ public class Main{
 
   public static void main(String[] args) {
     Scanner reader = new Scanner(System.in);
-    System.out.println("Welcome to Group62 Supply Chain Management.\n Please type your furniture request <category> <furniture> <amount>\n (example: mesh chair, 1)");
+    System.out.println("\nWelcome to Group62 Supply Chain Management.\n Please type your furniture request <category> <furniture> <amount>\n (example: mesh chair, 1)");
 
     boolean check = true;
     while(check){
