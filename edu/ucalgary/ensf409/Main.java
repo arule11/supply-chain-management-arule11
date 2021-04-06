@@ -3,7 +3,7 @@
           Nicolas Teng :
           Ivan Lou Tompong :
           Alden Lien :
-@version 1.4
+@version 1.5
 @since 1.0
 */
 
@@ -17,7 +17,7 @@ public class Main{
 
   public static void main(String[] args) {
     Scanner reader = new Scanner(System.in);
-    System.out.println("\nWelcome to Group62 Supply Chain Management.\n Please type your furniture request <category> <furniture> <amount>\n (example: mesh chair, 1)");
+    System.out.println("\nWelcome to Group62 Supply Chain Management.\n Please type your furniture request <category> <furniture>, <amount>\n (example: mesh chair, 1)");
 
     boolean check = true;
     while(check){
@@ -27,7 +27,7 @@ public class Main{
         } catch (Exception e) {
           e.printStackTrace();
         }
-        getFirstArg(order);
+        getSecondArg(order);
 
         boolean valid = true;
         for(int i = 0; i < arguments.length;i++){
@@ -54,14 +54,14 @@ public class Main{
   * @param type : the order as typed by the user
   */
   public static void getFirstArg(String order){
-    Pattern pattern = Pattern.compile("^[a-zA-Z]+");
+    Pattern pattern = Pattern.compile("^([a-zA-Z]+(\\s[a-zA-Z]+)*)");
     Matcher matcher = pattern.matcher(order);
     String arg0;
 
     if(matcher.find()){
       arg0 = matcher.group();
       arguments[0] = arg0;
-      getSecondArg(matcher.replaceFirst(""));
+      getThirdArg(matcher.replaceFirst(""));
     }
   }
 
@@ -70,14 +70,14 @@ public class Main{
   * @param type : the cropped order as typed by the user
   */
   public static void getSecondArg(String order){
-    Pattern pattern = Pattern.compile("[a-zA-Z]+");
+    Pattern pattern = Pattern.compile("[a-zA-Z]+,");
     Matcher matcher = pattern.matcher(order);
     String arg1;
 
     if(matcher.find()){
       arg1 = matcher.group();
-      arguments[1] = arg1;
-      getThirdArg(matcher.replaceFirst(""));
+      arguments[1] = arg1.substring(0, arg1.length() - 1);
+      getFirstArg(matcher.replaceFirst(""));
     }
   }
 
