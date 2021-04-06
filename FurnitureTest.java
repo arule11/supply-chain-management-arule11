@@ -235,43 +235,6 @@ public class FurnitureTest {
         int expected = 250;
         assertEquals("Summation was incorrect", expected, result);
     }
-    
-    /* @Test
-    // Constructor created with 3 argument
-    // initializeConnection with no arguments
-    // deleteOrders with 1 argument
-    // deleteItem with 1 item
-    public void testConstructor3deleteOrders1deleteItem1(){
-        FurnitureDataBase dataBase = new FurnitureDataBase ("mesh", "chair", 1);
-        dataBase.initializeConnection();
-
-        //Building a expected valid combation list
-        ArrayList<ArrayList<Furniture>> toDelete = new ArrayList<ArrayList<Furniture>>();
-        Chair valid1 = new Chair ("A0104", "mesh" , "Y", "Y", "N", "N", 200);
-        Chair valid2 = new Chair ("A0105", "mesh" , "N", "N", "Y", "Y", 150);
-        Chair valid3 = new Chair ("A0106", "mesh" , "Y", "N", "Y", "Y", 300);
-        
-        // Creates a statement to add items to delete
-        String query = "INSERT into chair (ID, Type, Legs, Arms, Seat, Cushion, Price, ManuID) VALUES()" ;
-        PreparedStatement myStmt = dbConnect.prepareStatement(query);
-
-        //Building Valid list 1 of price 350
-        ArrayList<Furniture> validOne = new ArrayList<Furniture>();
-        validOne.add(valid1);
-        validOne.add(valid2);
-
-        //Building Valid list 2 of price 500
-        ArrayList<Furniture> validTwo = new ArrayList<Furniture>(); 
-        validTwo.add(valid1);
-        validTwo.add(valid3);
-
-        //Filling expected valid list  
-        toDelete.add(validOne);
-        toDelete.add(validTwo);
-
-        dataBase.deleteOrders(toDelete);
-    }
-    */
 
     /* 
     *  Pre- test processes
