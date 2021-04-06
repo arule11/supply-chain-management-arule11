@@ -1,3 +1,12 @@
+/**
+@authors   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+          Nicolas Teng : 
+          Ivan Lou Tompong :
+          Alden Lien : 
+@version 1.6
+@since 1.0
+*/
+
 package edu.ucalgary.ensf409;
 
 import java.sql.*;
@@ -516,7 +525,7 @@ public class FurnitureDataBase{
 
 
   /**
-  *
+  * Runs the program - computing the requested order
   */
   public void run(){
     ArrayList<ArrayList<Furniture>> all = getSubsets(foundFurniture);
