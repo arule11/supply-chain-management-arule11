@@ -25,4 +25,4 @@ MySQL
  - Download connector files at : <https://dev.mysql.com/downloads/connector/j/>
 
 ## UML Diagram
-![Image description](https://github.com/March-27-Hackathon/supply-chain-management-arule11/blob/main/Project%20UML.png)
+![Image description]
