@@ -1,7 +1,7 @@
 /**
 @authors   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : 
-          Ivan Lou Tompong : 
+          Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : 
 @version 1.7
 @since 1.0
@@ -55,30 +55,53 @@ public class FurnitureDataBase{
       }
   }
 
+   /**
+   *Returns the variable furnitureRequest, which specifies the general 
+   *type of Furniture requested, i.e. a Chair, Desk, Lamp, or Filing
+   */
   public static String getFurnitureRequest(){
     return furnitureRequest;
   }
 
+   /**
+   *Returns the variable requestType, which specifies 
+   *the specific type of the Furniture requested
+   */
   public static String getRequestType(){
     return requestType;
   }
-
+   /**
+   *Returns the variable requestNum, which specifies the amount requested
+   */
   public static int getRequestNum(){
     return requestNum;
   }
-
+  
+    /**
+   *Returns the ArrayList foundFurniture, which contains all available items
+   * that are of the requested general Furniture type
+   */
   public ArrayList<Furniture> getFoundFurniture(){
     return foundFurniture;
   }
 
+  /**
+  *Sets the value of the variable furnitureRequest
+  */
   public void setFurnitureRequest(String furniture){
     this.furnitureRequest = furniture;
   }
-
+  
+   /**
+  *Sets the value of the variable requestType
+  */
   public void setRequestType(String category){
     this.requestType = category;
   }
 
+  /**
+  *Sets the value of the variable requestNum
+  */
   public void setRequestNum(int amount){
     this.requestNum = amount;
   }
