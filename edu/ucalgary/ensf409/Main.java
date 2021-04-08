@@ -3,7 +3,7 @@
           Nicolas Teng :
           Ivan Lou Tompong :
           Alden Lien :
-@version 1.5
+@version 1.6
 @since 1.0
 */
 
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Main{
   static String[] arguments = new String[3];
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InvalidOrderException {
     Scanner reader = new Scanner(System.in);
     System.out.println("\nWelcome to Group62 Supply Chain Management.\n Please type your furniture request <category> <furniture>, <amount>\n (example: mesh chair, 1)");
 
