@@ -126,7 +126,8 @@ public class GUI extends JFrame implements ActionListener{
   * Produces the order and displays it in a new window on the screen
   * @param action : the action event
   */
-  public void actionPerformed(ActionEvent event){
+  public void actionPerformed(ActionEvent event) {
+    try{
       furnitureRequest = (String)frInput.getSelectedItem();
       requestType = (String)rtInput.getSelectedItem();
       requestNum = (Integer)numInput.getSelectedItem();
@@ -139,6 +140,8 @@ public class GUI extends JFrame implements ActionListener{
 
         JOptionPane.showMessageDialog(this, output, "Order Output", JOptionPane.PLAIN_MESSAGE);
       }
+    }catch(InvalidOrderException e){
+    }
   }
 
 
