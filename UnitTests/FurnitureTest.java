@@ -12,8 +12,6 @@ public class FurnitureTest {
     FurnitureDataBase dataBase;
 
     @Test
-    // Constructor created with 3 arguments
-    // initializeConnection with no arguments
     // Non-static call of data members to check proper initialization
     public void testConstructor3(){
 
@@ -34,8 +32,12 @@ public class FurnitureTest {
     }
 
     @Test
-    //
-    public void testSetters(){
+    // setFurnitureRequest with 1 argument
+    // setRequestType with 1 argument
+    // setRequestNum with 1 argument
+    // addFurniture with no arguments
+    // getFoundFurniture with no arguments
+    public void testSetters3Getter1AddFurniture(){
         dataBase.setFurnitureRequest("chair");
         dataBase.setRequestType("task");
         dataBase.setRequestNum(2);
@@ -54,8 +56,6 @@ public class FurnitureTest {
     }
 
     @Test
-    // Constructor created with 3 argument
-    // initializeConnection with no arguments
     // addFurniture with no arguments
     // May change "mesh" and "Mesh" to any other type (so long as they're the same)
     // Can be tested with other items as well
@@ -74,8 +74,6 @@ public class FurnitureTest {
     }
 
     @Test
-    // Constructor created with 3 argument
-    // initializeConnection with no arguments
     // getSubsets with 1 argument
     public void testConstructor3GetSubsets1(){
         //Building set to be created into subsets
@@ -95,8 +93,6 @@ public class FurnitureTest {
     }
 
     @Test
-    // Constructor created with 3 argument
-    // initializeConnection with no arguments
     // getValid with 1 argument
     public void testConstructor3GetValid1(){
         //Building a expected valid combation list
@@ -139,8 +135,6 @@ public class FurnitureTest {
     }
 
     @Test
-    // Constructor created with 3 argument
-    // initializeConnection with no arguments
     // comparePrice with 1 argument
     public void testConstructor3ComparePrice(){
         //Building a expected valid combination list
@@ -177,8 +171,6 @@ public class FurnitureTest {
     }
 
     @Test
-    // Constructor created with 3 argument
-    // initializeConnection with no arguments
     // checkChairSubset with 1 argument
     public void testConstructor3CheckChairSubset1(){
         //Building valid combination
@@ -265,6 +257,8 @@ public class FurnitureTest {
     */
 
   @Before
+    // Constructor created with 3 arguments
+    // initializeConnection with no arguments
   public void start() {
     //Initializing FurnitureDataBase
     dataBase = new FurnitureDataBase ("mesh", "chair", 2);
