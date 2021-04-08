@@ -144,8 +144,6 @@ public class FurnitureDataBase{
         }
         if(invalid){
           throw new InvalidOrderException();
-          // System.out.println("Invalid furniture request");
-          // System.exit(0);
         }
 
       Statement myStmt = dbConnect.createStatement();
@@ -185,7 +183,6 @@ public class FurnitureDataBase{
     ArrayList<ArrayList<Furniture>> orders = new ArrayList<ArrayList<Furniture>>();
 
     ArrayList<ArrayList<Furniture>> all = getSubsets(getFoundFurniture());
-    //ArrayList<ArrayList<Furniture>> all = getSubsets(foundFurniture);
     ArrayList<ArrayList<Furniture>> valid = getValid(all);
     ArrayList<ArrayList<Furniture>> orderedCheapest = comparePrice(valid);
 
@@ -193,7 +190,6 @@ public class FurnitureDataBase{
     boolean set;
     // adding up to the number requested
     while(n != getRequestNum()){
-    //while(n != requestNum){
       for(int i = 0; i < orderedCheapest.size(); i++){
         set = true;
         for(int j = 0; j < orderedCheapest.get(i).size(); j++){
@@ -222,21 +218,15 @@ public class FurnitureDataBase{
   * @param orders : the ArrayList of Lists of Furniture of purchases
   */
   public String checkOrder(ArrayList<ArrayList<Furniture>> orders, boolean gui){
-  //public void checkOrder(ArrayList<ArrayList<Furniture>> orders){
     ArrayList<ArrayList<Furniture>> last = new ArrayList<ArrayList<Furniture>>();
     // if the amount requested is larger than the amount of valid orders found then the request fails
     if(getRequestNum() > orders.size()){
-    //if(requestNum > orders.size()){
-      // printOutputFail();
-      // return;
       return printOutputFail(gui);
     }else{
       for(int i = 0; i < getRequestNum(); i++){
-      //for(int i = 0; i < requestNum; i++){
         last.add(orders.get(i));
       }
       deleteOrders(last);
-      //printOutput(last);
       return printOutput(last, gui);
     }
   }
@@ -321,22 +311,18 @@ public class FurnitureDataBase{
     ArrayList<ArrayList<Furniture>> validSets = new ArrayList<ArrayList<Furniture>>();
     for(ArrayList<Furniture> subset : all){
       if(getFurnitureRequest().equalsIgnoreCase("Chair")){
-      //if(furnitureRequest.equalsIgnoreCase("Chair")){
         if(checkChairSubset(subset)){
           validSets.add(subset);
         }
       }else if(getFurnitureRequest().equalsIgnoreCase("Desk")){
-      //}else if(furnitureRequest.equalsIgnoreCase("Desk")){
         if(checkDeskSubset(subset)){
           validSets.add(subset);
         }
       }else if(getFurnitureRequest().equalsIgnoreCase("Lamp")){
-      //}else if(furnitureRequest.equalsIgnoreCase("Lamp")){
         if(checkLampSubset(subset)){
           validSets.add(subset);
         }
       }else if(getFurnitureRequest().equalsIgnoreCase("Filing")){
-      //}else if(furnitureRequest.equalsIgnoreCase("Filing")){
         if(checkFilingSubset(subset)){
           validSets.add(subset);
         }
@@ -489,7 +475,6 @@ public class FurnitureDataBase{
     try{
       // Creates a statement for the delete instruciton
       String query = "DELETE FROM " + getFurnitureRequest() + " WHERE ID = ?";
-      //String query = "DELETE FROM " + furnitureRequest + " WHERE ID = ?";
       PreparedStatement myStmt = dbConnect.prepareStatement(query);
 
       myStmt.setString(1, deleteID);
@@ -505,20 +490,15 @@ public class FurnitureDataBase{
   * Output for failed purchase request - printing names of suggested manufacturers for the order
   */
   public String printOutputFail(boolean gui){
-  //public void printOutputFail(){
     String[] manufactIDs = new String[6];
 
     if(getFurnitureRequest().equalsIgnoreCase("Chair")){
-    //if(furnitureRequest.equalsIgnoreCase("Chair")){
       manufactIDs = Chair.getManufacturers();
     }else if(getFurnitureRequest().equalsIgnoreCase("Desk")){
-    //}else if(furnitureRequest.equalsIgnoreCase("Desk")){
       manufactIDs = Desk.getManufacturers();
     }else if(getFurnitureRequest().equalsIgnoreCase("Lamp")){
-    //}else if(furnitureRequest.equalsIgnoreCase("Lamp")){
       manufactIDs = Lamp.getManufacturers();
     }else if(getFurnitureRequest().equalsIgnoreCase("Filing")){
-    //}else if(furnitureRequest.equalsIgnoreCase("Filing")){
       manufactIDs = Filing.getManufacturers();
     }
 
@@ -538,15 +518,12 @@ public class FurnitureDataBase{
     }
 
     StringBuilder sb = new StringBuilder();
-    // print failed output message to console
-    //System.out.println("\nOrder cannot be fulfilled based on current inventory. Suggested manufacturers are ");
+    // print failed output message to console or GUI
     for(int j = 0; j < names.size(); j++){
       if(j == names.size() - 1){
         sb.append("and " + names.get(j) + ".\n");
-        //System.out.println("and " + names.get(j) + ".\n");
       }else{
         sb.append(names.get(j) + ", ");
-        //System.out.print(names.get(j) + ", ");
       }
     }
     if(gui){
@@ -562,11 +539,9 @@ public class FurnitureDataBase{
   * @param purchased : the ArrayList of Lists of Furniture containing all purchased items
   */
   public static String printOutput(ArrayList<ArrayList<Furniture>> purchased, boolean gui){
-  //public static void printOutput(ArrayList<ArrayList<Furniture>> purchased){
     StringBuilder sb = new StringBuilder();
     int price = 0;
     // print order summary message to console or GUI
-    //System.out.print("\nPurchase ");
     sb.append("Purchase ");
 
     for(int i = 0; i < purchased.size(); i++){
@@ -574,24 +549,20 @@ public class FurnitureDataBase{
       for(int j = 0; j < purchased.get(i).size(); j++){
         if(i == 0 && j == 0){
           sb.append(purchased.get(i).get(j).getID() + ", ");
-          //System.out.print(purchased.get(i).get(j).getID() + ", ");
         }else if(i == (purchased.size() - 1) && j == (purchased.get(i).size() - 1)){
           sb.append("and " + purchased.get(i).get(j).getID());
-          //System.out.print("and " + purchased.get(i).get(j).getID());
         }else{
           sb.append(purchased.get(i).get(j).getID() + ", ");
-          //System.out.print(purchased.get(i).get(j).getID() + ", ");
         }
       }
     }
     sb.append(" for $" + price + ".\n");
-    //System.out.println(" for $" + price + ".\n");
     // create order form
     writeOrderForm(purchased, price);
     if(gui){
       return sb.toString();
     }
-    System.out.println(sb.toString());
+    System.out.println("\n" + sb.toString());
     return "";
   }
 
@@ -606,7 +577,6 @@ public class FurnitureDataBase{
     File toWrite = new File(outputFile);
     ArrayList<String> ids = new ArrayList<String>();
     String orgOrder = getRequestType() + " " + getFurnitureRequest() + ", " + getRequestNum();
-    //String orgOrder = requestType + " " + furnitureRequest + ", " + requestNum;
 
     try{
       // adds ID of each item purchased to a list of IDs
@@ -651,11 +621,9 @@ public class FurnitureDataBase{
   */
   public void run(){
     ArrayList<ArrayList<Furniture>> all = getSubsets(getFoundFurniture());
-    //ArrayList<ArrayList<Furniture>> all = getSubsets(foundFurniture);
     ArrayList<ArrayList<Furniture>> valid = getValid(all);
     ArrayList<ArrayList<Furniture>> ordered = comparePrice(valid);
     ArrayList<ArrayList<Furniture>> orders = produceOrder();
-    //checkOrder(orders);
     checkOrder(orders, false);
   }
 
