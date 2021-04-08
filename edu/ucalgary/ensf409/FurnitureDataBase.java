@@ -104,6 +104,13 @@ public class FurnitureDataBase{
     this.requestNum = amount;
   }
 
+  /**
+  * Sets the value of the variable foundFurniture
+  */
+  public void setFoundFurniture(ArrayList<Furniture> furniture){
+    foundFurniture = furniture;
+  }
+
 
   /**
   * Adds all furniture of the type specified to the list of foundFurniture
