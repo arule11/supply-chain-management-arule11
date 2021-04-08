@@ -3,7 +3,7 @@
           Nicolas Teng :
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien :
-@version 1.3
+@version 1.4
 @since 1.0
 */
 
@@ -29,9 +29,6 @@ public class GUI extends JFrame implements ActionListener{
   private JLabel rtLabel;
   private JLabel numLabel;
 
-  String[] furnitureTypes = new String[]{"Select","Chair", "Desk", "Lamp", "Filing"};
-  Integer[] numbers = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-
   private JComboBox<String> frInput;
   private JComboBox<String> rtInput;
   private JComboBox<Integer> numInput;
@@ -47,82 +44,85 @@ public class GUI extends JFrame implements ActionListener{
   * Sets up the GUI for the system, so an order can be placed
   */
   public void setupGUI(){
-      instructions = new JLabel("Please Select Your Furniture Order.");
-      instructions.setFont(new Font("Times", Font.BOLD, 16));
-      frLabel = new JLabel("Furniture:");
-      frLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-      rtLabel = new JLabel("Category:");
-      rtLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-      numLabel = new JLabel("Amount:");
-      numLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+    String[] furnitureTypes = new String[]{"Select","Chair", "Desk", "Lamp", "Filing"};
+    Integer[] numbers = new Integer[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 
-      frInput = new JComboBox<>(furnitureTypes);
-      rtInput = new JComboBox<>();
-      rtInput.addItem("Select a Furniture");
-      numInput = new JComboBox<>(numbers);
+    instructions = new JLabel("Please Select Your Furniture Order.");
+    instructions.setFont(new Font("Times", Font.BOLD, 16));
+    frLabel = new JLabel("Furniture:");
+    frLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+    rtLabel = new JLabel("Category:");
+    rtLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+    numLabel = new JLabel("Amount:");
+    numLabel.setFont(new Font("Arial", Font.PLAIN, 14));
 
-      frInput.addActionListener(new ActionListener(){
-        public void actionPerformed(ActionEvent e){
-          String source = (String) frInput.getSelectedItem();
-          if(source.equals("Chair")){
-        	 rtInput.removeAllItems();
-        	 rtInput.addItem("Kneeling");
-           	 rtInput.addItem("Task");
-           	 rtInput.addItem("Mesh");
-           	 rtInput.addItem("Executive");
-          	 rtInput.addItem("Ergonomic");
-          }else if(source.equals("Desk")){
-        	 rtInput.removeAllItems();
-         	 rtInput.addItem("Standing");
-          	 rtInput.addItem("Adjustable");
-          	 rtInput.addItem("Traditional");
-          }else if(source.equals("Lamp")){
-        	 rtInput.removeAllItems();
-        	 rtInput.addItem("Desk");
-         	 rtInput.addItem("Study");
-         	 rtInput.addItem("Swing Arm");
-          }else if(source.equals("Filing")){
-        	 rtInput.removeAllItems();
-        	 rtInput.addItem("Small");
-        	 rtInput.addItem("Medium");
-        	 rtInput.addItem("Large");
-          }else{
-        	 rtInput.removeAllItems();
-        	 rtInput.addItem("Select a Furniture");
-          }
+    frInput = new JComboBox<>(furnitureTypes);
+    rtInput = new JComboBox<>();
+    rtInput.addItem("Select a Furniture");
+    numInput = new JComboBox<>(numbers);
+
+    frInput.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e){
+        String source = (String) frInput.getSelectedItem();
+        if(source.equals("Chair")){
+         rtInput.removeAllItems();
+         rtInput.addItem("Kneeling");
+         rtInput.addItem("Task");
+         rtInput.addItem("Mesh");
+         rtInput.addItem("Executive");
+         rtInput.addItem("Ergonomic");
+        }else if(source.equals("Desk")){
+         rtInput.removeAllItems();
+         rtInput.addItem("Standing");
+         rtInput.addItem("Adjustable");
+         rtInput.addItem("Traditional");
+        }else if(source.equals("Lamp")){
+        	rtInput.removeAllItems();
+        	rtInput.addItem("Desk");
+         	rtInput.addItem("Study");
+         	rtInput.addItem("Swing Arm");
+        }else if(source.equals("Filing")){
+        	rtInput.removeAllItems();
+        	rtInput.addItem("Small");
+        	rtInput.addItem("Medium");
+        	rtInput.addItem("Large");
+        }else{
+        	rtInput.removeAllItems();
+        	rtInput.addItem("Select a Furniture");
         }
-      });
+      }
+    });
 
-      JButton submitInfo = new JButton("Submit");
-      submitInfo.addActionListener(this);
+    JButton submitInfo = new JButton("Submit");
+    submitInfo.addActionListener(this);
 
-      JPanel headerPanel = new JPanel();
-      headerPanel.setLayout(new FlowLayout());
+    JPanel headerPanel = new JPanel();
+    headerPanel.setLayout(new FlowLayout());
       //headerPanel.setBackground(new Color(186,213,255));
-      headerPanel.setBackground(new Color(181, 173, 165));
+    headerPanel.setBackground(new Color(181, 173, 165));
 
-      JPanel clientPanel = new JPanel();
-      clientPanel.setLayout(new FlowLayout());
-      //clientPanel.setBackground(new Color(209,227,255));
-      clientPanel.setBackground(new Color(209, 193, 176));
+    JPanel OrderPanel = new JPanel();
+    OrderPanel.setLayout(new FlowLayout());
+      //OrderPanel.setBackground(new Color(209,227,255));
+    OrderPanel.setBackground(new Color(209, 193, 176));
 
-      JPanel submitPanel = new JPanel();
-      submitPanel.setLayout(new FlowLayout());
+    JPanel submitPanel = new JPanel();
+    submitPanel.setLayout(new FlowLayout());
       //submitPanel.setBackground(new Color(186,213,255));
-      submitPanel.setBackground(new Color(181, 173, 165));
+    submitPanel.setBackground(new Color(181, 173, 165));
 
-      headerPanel.add(instructions);
-      clientPanel.add(frLabel);
-      clientPanel.add(frInput);
-      clientPanel.add(rtLabel);
-      clientPanel.add(rtInput);
-      clientPanel.add(numLabel);
-      clientPanel.add(numInput);
-      submitPanel.add(submitInfo);
+    headerPanel.add(instructions);
+    OrderPanel.add(frLabel);
+    OrderPanel.add(frInput);
+    OrderPanel.add(rtLabel);
+    OrderPanel.add(rtInput);
+    OrderPanel.add(numLabel);
+    OrderPanel.add(numInput);
+    submitPanel.add(submitInfo);
 
-      this.add(headerPanel, BorderLayout.NORTH);
-      this.add(clientPanel, BorderLayout.CENTER);
-      this.add(submitPanel, BorderLayout.PAGE_END);
+    this.add(headerPanel, BorderLayout.NORTH);
+    this.add(OrderPanel, BorderLayout.CENTER);
+    this.add(submitPanel, BorderLayout.PAGE_END);
   }
 
 
