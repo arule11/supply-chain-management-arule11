@@ -87,21 +87,21 @@ public class FurnitureDataBase{
   * Sets the value of the variable furnitureRequest
   */
   public void setFurnitureRequest(String furniture){
-    this.furnitureRequest = furniture;
+    furnitureRequest = furniture;
   }
 
   /**
   * Sets the value of the variable requestType
   */
   public void setRequestType(String category){
-    this.requestType = category;
+    requestType = category;
   }
 
   /**
   * Sets the value of the variable requestNum
   */
   public void setRequestNum(int amount){
-    this.requestNum = amount;
+    requestNum = amount;
   }
 
   /**
