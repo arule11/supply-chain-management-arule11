@@ -1,6 +1,8 @@
-package edu.ucalgary.ensf409;
-import static org.junit.Assert.assertEquals;
+//package edu.ucalgary.ensf409;
+package UnitTests;
 
+import edu.ucalgary.ensf409.Desk;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class DeskTest {
@@ -63,5 +65,5 @@ public class DeskTest {
 
 
 
- 
+
 }
