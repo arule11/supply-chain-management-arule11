@@ -7,18 +7,17 @@ import java.util.*;
 
 import com.mysql.cj.jdbc.DatabaseMetaData;
 
-public class FurnitureTest {
+public class FurnitureDataBaseTest {
     //Data Members
     FurnitureDataBase dataBase;
 
     @Test
     // Non-static call of data members to check proper initialization
     public void testConstructor3(){
-
         //Recieving values for the request, type and number of items.
         String expectedRequest = "chair";
         String resultedRequest = FurnitureDataBase.getFurnitureRequest();
-    
+
         String resultedType = FurnitureDataBase.getRequestType();
         String expectedType = "mesh";
 
@@ -28,7 +27,7 @@ public class FurnitureTest {
         //Checks three data members simultaneously
         assertEquals("Furniture number wasn't correctly stored", expectedNum, resultedNum);
         assertEquals("Type wasn't correctly stored", expectedType,resultedType);
-        assertEquals("Request wasn't correctly stored", expectedRequest, resultedRequest);        
+        assertEquals("Request wasn't correctly stored", expectedRequest, resultedRequest);
     }
 
     @Test
@@ -37,7 +36,7 @@ public class FurnitureTest {
     // setRequestNum with 1 argument
     // addFurniture with no arguments
     // getFoundFurniture with no arguments
-    public void testSetters3Getter1AddFurniture(){
+    public void testSetters3Getter1AddFurniture() throws InvalidOrderException{
         dataBase.setFurnitureRequest("chair");
         dataBase.setRequestType("task");
         dataBase.setRequestNum(2);
@@ -59,7 +58,7 @@ public class FurnitureTest {
     // addFurniture with no arguments
     // May change "mesh" and "Mesh" to any other type (so long as they're the same)
     // Can be tested with other items as well
-    public void testConstructor3AddFurniture(){
+    public void testConstructor3AddFurniture() throws InvalidOrderException{
         dataBase.addFurniture();
         //Loop through foundFurniture to make sure that all types are the same as specified
         boolean resultType = false;
@@ -71,6 +70,22 @@ public class FurnitureTest {
             }
         }
         assertTrue("Types are not the selected type", resultType);
+    }
+
+    // test invalid order - with furniture that doesnt exist in the database
+    @Test(expected = InvalidOrderException.class)
+    public void testConstructor3AddFurnitureInvalid() throws InvalidOrderException{
+      dataBase = new FurnitureDataBase("water", "bed", 2);
+      dataBase.initializeConnection();
+      dataBase.addFurniture();
+    }
+
+    // test invalid order - with mismatched combination between two different furniture categories
+    @Test(expected = InvalidOrderException.class)
+    public void testConstructor3AddFurnitureMisMatch() throws InvalidOrderException{
+      dataBase = new FurnitureDataBase("Mesh", "Desk", 2);
+      dataBase.initializeConnection();
+      dataBase.addFurniture();
     }
 
     @Test
@@ -107,11 +122,11 @@ public class FurnitureTest {
         validOne.add(valid2);
 
         //Building Valid list 2
-        ArrayList<Furniture> validTwo = new ArrayList<Furniture>(); 
+        ArrayList<Furniture> validTwo = new ArrayList<Furniture>();
         validTwo.add(valid1);
         validTwo.add(valid3);
 
-        //Filling expected valid list  
+        //Filling expected valid list
         expectedValidCombinations.add(validOne);
         expectedValidCombinations.add(validTwo);
 
@@ -149,11 +164,11 @@ public class FurnitureTest {
         validOne.add(valid2);
 
         //Building Valid list 2 of price 500
-        ArrayList<Furniture> validTwo = new ArrayList<Furniture>(); 
+        ArrayList<Furniture> validTwo = new ArrayList<Furniture>();
         validTwo.add(valid1);
         validTwo.add(valid3);
 
-        //Filling expected valid list  
+        //Filling expected valid list
         expectedSortedList.add(validOne);
         expectedSortedList.add(validTwo);
 
@@ -185,7 +200,7 @@ public class FurnitureTest {
         boolean expectedCheck = true;
 
         assertEquals("Validity incorrect",expectedCheck,resultedCheck);
-    } 
+    }
 
     @Test
     // Constructor created with 3 argument
@@ -208,7 +223,7 @@ public class FurnitureTest {
         //Expected order
         ArrayList<ArrayList<Furniture>> expectedProduceOrder = new ArrayList<ArrayList<Furniture>>();
         expectedProduceOrder.add(createdFoundFurniture);
-        
+
         //Tested order
         ArrayList<ArrayList<Furniture>> resultedProduceOrder = dataBase.produceOrder();
         assertEquals("Purchased orders do not match", expectedProduceOrder, resultedProduceOrder);
@@ -250,9 +265,8 @@ public class FurnitureTest {
         assertEquals("Summation was incorrect", expected, result);
     }
 
-   
 
-    /* 
+    /*
     *  Pre- test processes
     */
 
@@ -263,5 +277,5 @@ public class FurnitureTest {
     //Initializing FurnitureDataBase
     dataBase = new FurnitureDataBase ("mesh", "chair", 2);
     dataBase.initializeConnection();
-  }    
+  }
 }
