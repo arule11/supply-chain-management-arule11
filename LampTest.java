@@ -1,6 +1,8 @@
-package edu.ucalgary.ensf409;
-import static org.junit.Assert.assertEquals;
+//package edu.ucalgary.ensf409;
+package UnitTests;
 
+import edu.ucalgary.ensf409.Lamp;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class LampTest {
@@ -13,7 +15,7 @@ public class LampTest {
       Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
       assertEquals("L013",test.getID());
     }
-  
+
     /**
      * Tests if the Constructor and getPrice() method works
      */
@@ -22,7 +24,7 @@ public class LampTest {
         Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
       assertEquals(18,test.getPrice());
     }
-  
+
     /**
      * Tests if the Constructor and getType() method works
      */
@@ -51,6 +53,6 @@ public class LampTest {
   }
 
 
-  
+
 
 }
