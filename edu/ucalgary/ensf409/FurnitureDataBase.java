@@ -1,9 +1,9 @@
 /**
-@authors   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+@authors  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : 
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : 
-@version 1.7
+@version 1.8
 @since 1.0
 */
 
@@ -34,9 +34,6 @@ public class FurnitureDataBase{
   * @param number : the number of furniture items requested 
   */
   public FurnitureDataBase(String type, String request, int number){
-    // furnitureRequest = request;
-    // requestType = type;
-    // requestNum = number;
     setFurnitureRequest(request);
     setRequestType(type);
     setRequestNum(number);
@@ -56,7 +53,7 @@ public class FurnitureDataBase{
   }
 
    /**
-   *Returns the variable furnitureRequest, which specifies the general 
+   *Returns the variable furnitureRequest, which specifies the general
    *type of Furniture requested, i.e. a Chair, Desk, Lamp, or Filing
    */
   public static String getFurnitureRequest(){
@@ -64,21 +61,22 @@ public class FurnitureDataBase{
   }
 
    /**
-   *Returns the variable requestType, which specifies 
-   *the specific type of the Furniture requested
+   * Returns the variable requestType, which specifies
+   *  the specific type of the Furniture requested
    */
   public static String getRequestType(){
     return requestType;
   }
-   /**
-   *Returns the variable requestNum, which specifies the amount requested
-   */
+
+  /**
+  * Returns the variable requestNum, which specifies the amount requested
+  */
   public static int getRequestNum(){
     return requestNum;
   }
-  
-    /**
-   *Returns the ArrayList foundFurniture, which contains all available items
+
+   /**
+   * Returns the ArrayList foundFurniture, which contains all available items
    * that are of the requested general Furniture type
    */
   public ArrayList<Furniture> getFoundFurniture(){
@@ -86,21 +84,21 @@ public class FurnitureDataBase{
   }
 
   /**
-  *Sets the value of the variable furnitureRequest
+  * Sets the value of the variable furnitureRequest
   */
   public void setFurnitureRequest(String furniture){
     this.furnitureRequest = furniture;
   }
-  
-   /**
-  *Sets the value of the variable requestType
+
+  /**
+  * Sets the value of the variable requestType
   */
   public void setRequestType(String category){
     this.requestType = category;
   }
 
   /**
-  *Sets the value of the variable requestNum
+  * Sets the value of the variable requestNum
   */
   public void setRequestNum(int amount){
     this.requestNum = amount;
@@ -112,27 +110,53 @@ public class FurnitureDataBase{
   */
   public void addFurniture(){
     try{
+        String category = getRequestType().toLowerCase();
+        boolean invalid = true;
+        switch(getFurnitureRequest().toLowerCase()){
+          case "chair":
+            if(category.equals("kneeling") || category.equals("task") || category.equals("mesh")
+                    || category.equals("executive") || category.equals("ergonomic")){
+              invalid = false;
+              break;
+            }
+          case "desk":
+            if(category.equals("standing") || category.equals("adjustable") || category.equals("traditional")){
+              invalid = false;
+              break;
+            }
+          case "lamp":
+            if(category.equals("desk") || category.equals("study") || category.equals("swing arm")){
+              invalid = false;
+            }
+            break;
+          case "filing":
+            if(category.equals("small") || category.equals("medium") || category.equals("large")){
+              invalid = false;
+            }
+            break;
+        }
+        if(invalid){
+          System.out.println("Invalid furniture request");
+          System.exit(0);
+        }
+
       Statement myStmt = dbConnect.createStatement();
       results = myStmt.executeQuery("SELECT * FROM " + furnitureRequest + " WHERE type = '" + requestType + "'");
 
       while (results.next()){
         if(getFurnitureRequest().equalsIgnoreCase("Chair")){
-        //if(furnitureRequest.equalsIgnoreCase("Chair")){
           foundFurniture.add(new Chair(results.getString("ID"), results.getString("Type"), results.getString("Legs"),
                 results.getString("Arms"), results.getString("Seat"), results.getString("Cushion"), results.getInt("Price")));
           continue;
         }else if(getFurnitureRequest().equalsIgnoreCase("Desk")){
-        //}else if(furnitureRequest.equalsIgnoreCase("Desk")){
           foundFurniture.add(new Desk(results.getString("ID"), results.getString("Type"), results.getString("Legs"),
                 results.getString("Top"), results.getString("Drawer"), results.getInt("Price")));
           continue;
         }else if(getFurnitureRequest().equalsIgnoreCase("Lamp")){
-        //}else if(furnitureRequest.equalsIgnoreCase("Lamp")){
           foundFurniture.add(new Lamp(results.getString("ID"), results.getString("Type"), results.getString("Base"),
                  results.getString("Bulb"), results.getInt("Price")));
           continue;
         }else if(getFurnitureRequest().equalsIgnoreCase("Filing")){
-        //}else if(furnitureRequest.equalsIgnoreCase("Filing")){
           foundFurniture.add(new Filing(results.getString("ID"), results.getString("Type"), results.getString("Rails"),
                   results.getString("Drawers"), results.getString("Cabinet"), results.getInt("Price")));
           continue;
@@ -140,7 +164,7 @@ public class FurnitureDataBase{
       }
       myStmt.close();
     } catch(SQLException ex) {
-        ex.printStackTrace();
+      ex.printStackTrace();
     }
   }
 
@@ -189,20 +213,23 @@ public class FurnitureDataBase{
   *   it is filled.
   * @param orders : the ArrayList of Lists of Furniture of purchases
   */
-  public void checkOrder(ArrayList<ArrayList<Furniture>> orders){
+  public String checkOrder(ArrayList<ArrayList<Furniture>> orders, boolean gui){
+  //public void checkOrder(ArrayList<ArrayList<Furniture>> orders){
     ArrayList<ArrayList<Furniture>> last = new ArrayList<ArrayList<Furniture>>();
     // if the amount requested is larger than the amount of valid orders found then the request fails
     if(getRequestNum() > orders.size()){
     //if(requestNum > orders.size()){
-      printOutputFail();
-      return;
+      // printOutputFail();
+      // return;
+      return printOutputFail(gui);
     }else{
       for(int i = 0; i < getRequestNum(); i++){
       //for(int i = 0; i < requestNum; i++){
         last.add(orders.get(i));
       }
       deleteOrders(last);
-      printOutput(last);
+      //printOutput(last);
+      return printOutput(last, gui);
     }
   }
 
@@ -469,7 +496,8 @@ public class FurnitureDataBase{
   /**
   * Output for failed purchase request - printing names of suggested manufacturers for the order
   */
-  public void printOutputFail(){
+  public String printOutputFail(boolean gui){
+  //public void printOutputFail(){
     String[] manufactIDs = new String[6];
 
     if(getFurnitureRequest().equalsIgnoreCase("Chair")){
@@ -500,15 +528,24 @@ public class FurnitureDataBase{
     } catch(SQLException ex) {
         ex.printStackTrace();
     }
+
+    StringBuilder sb = new StringBuilder();
     // print failed output message to console
-    System.out.println("\nOrder cannot be fulfilled based on current inventory. Suggested manufacturers are ");
+    //System.out.println("\nOrder cannot be fulfilled based on current inventory. Suggested manufacturers are ");
     for(int j = 0; j < names.size(); j++){
       if(j == names.size() - 1){
-        System.out.println("and " + names.get(j) + ".\n");
+        sb.append("and " + names.get(j) + ".\n");
+        //System.out.println("and " + names.get(j) + ".\n");
       }else{
-        System.out.print(names.get(j) + ", ");
+        sb.append(names.get(j) + ", ");
+        //System.out.print(names.get(j) + ", ");
       }
     }
+    if(gui){
+      return "Order cannot be fulfilled based on current inventory. Suggested manufacturers are " + sb.toString();
+    }
+    System.out.println("\nOrder cannot be fulfilled based on current inventory. Suggested manufacturers are " + sb.toString());
+    return "";
   }
 
 
@@ -516,25 +553,38 @@ public class FurnitureDataBase{
   * Output for filled order request - printing IDs of items purchased and the total price
   * @param purchased : the ArrayList of Lists of Furniture containing all purchased items
   */
-  public static void printOutput(ArrayList<ArrayList<Furniture>> purchased){
+  public static String printOutput(ArrayList<ArrayList<Furniture>> purchased, boolean gui){
+  //public static void printOutput(ArrayList<ArrayList<Furniture>> purchased){
+    StringBuilder sb = new StringBuilder();
     int price = 0;
-    // print order summary message to console
-    System.out.print("\nPurchase ");
+    // print order summary message to console or GUI
+    //System.out.print("\nPurchase ");
+    sb.append("Purchase ");
+
     for(int i = 0; i < purchased.size(); i++){
       price = price + getComboPrice(purchased.get(i));
       for(int j = 0; j < purchased.get(i).size(); j++){
         if(i == 0 && j == 0){
-          System.out.print(purchased.get(i).get(j).getID() + ", ");
+          sb.append(purchased.get(i).get(j).getID() + ", ");
+          //System.out.print(purchased.get(i).get(j).getID() + ", ");
         }else if(i == (purchased.size() - 1) && j == (purchased.get(i).size() - 1)){
-          System.out.print("and " + purchased.get(i).get(j).getID());
+          sb.append("and " + purchased.get(i).get(j).getID());
+          //System.out.print("and " + purchased.get(i).get(j).getID());
         }else{
-          System.out.print(purchased.get(i).get(j).getID() + ", ");
+          sb.append(purchased.get(i).get(j).getID() + ", ");
+          //System.out.print(purchased.get(i).get(j).getID() + ", ");
         }
       }
     }
-    System.out.println(" for $" + price + ".\n");
+    sb.append(" for $" + price + ".\n");
+    //System.out.println(" for $" + price + ".\n");
     // create order form
     writeOrderForm(purchased, price);
+    if(gui){
+      return sb.toString();
+    }
+    System.out.println(sb.toString());
+    return "";
   }
 
 
@@ -589,7 +639,7 @@ public class FurnitureDataBase{
 
 
   /**
-  * Runs the program - computing the requested order
+  * Runs the program in console - computing the requested order
   */
   public void run(){
     ArrayList<ArrayList<Furniture>> all = getSubsets(getFoundFurniture());
@@ -597,7 +647,16 @@ public class FurnitureDataBase{
     ArrayList<ArrayList<Furniture>> valid = getValid(all);
     ArrayList<ArrayList<Furniture>> ordered = comparePrice(valid);
     ArrayList<ArrayList<Furniture>> orders = produceOrder();
-    checkOrder(orders);
+    //checkOrder(orders);
+    checkOrder(orders, false);
+  }
+
+  public String runGUI(){
+    ArrayList<ArrayList<Furniture>> all = getSubsets(getFoundFurniture());
+    ArrayList<ArrayList<Furniture>> valid = getValid(all);
+    ArrayList<ArrayList<Furniture>> ordered = comparePrice(valid);
+    ArrayList<ArrayList<Furniture>> orders = produceOrder();
+    return checkOrder(orders, true);
   }
 
  }
