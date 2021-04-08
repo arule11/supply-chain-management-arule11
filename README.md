@@ -19,6 +19,12 @@ In Terminal:
 - console version, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.Main
 - GUI version, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.GUI
 
+### To Run UnitTests
+1. Clone entire directory to a new desktop folder.
+2. In the console, direct to the desktop folder using cd < filepath >
+3. To compile, use command --> javac -cp .:UnitTests/junit-4.13.2.jar:UnitTests/hamcrest-core-1.3.jar UnitTests/< TestClassName.java >
+4. To run, use command --> java -cp .:UnitTests/junit-4.13.2.jar:UnitTests/hamcrest-core-1.3.jar org.junit.runner.JUnitCore UnitTests.< TestClassName.java >
+
 ## Requirements
 JDK <br /> 
 MySQL
