@@ -1,6 +1,8 @@
-package edu.ucalgary.ensf409;
-import static org.junit.Assert.assertEquals;
+//package edu.ucalgary.ensf409;
+package UnitTests;
 
+import edu.ucalgary.ensf409.Chair;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class ChairTest{
@@ -13,7 +15,7 @@ public class ChairTest{
       Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
       assertEquals("C0914",test.getID());
     }
-  
+
     /**
      * Tests if the Constructor and getPrice() method works
      */
@@ -22,11 +24,11 @@ public class ChairTest{
         Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
       assertEquals(50,test.getPrice());
     }
-  
+
     /**
      * Tests if the Constructor and getType() method works
      */
-    @Test 
+  @Test
   public void testConstructorAndGetType(){
     Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
     assertEquals("Task", test.getType());
