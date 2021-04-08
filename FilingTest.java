@@ -1,6 +1,7 @@
-package edu.ucalgary.ensf409;
-import static org.junit.Assert.assertEquals;
+package UnitTests;
 
+import edu.ucalgary.ensf409.Filing;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 public class FilingTest {
@@ -13,7 +14,7 @@ public class FilingTest {
       Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
       assertEquals("F001",test.getID());
     }
-  
+
     /**
      * Tests if the Constructor and getPrice() method works
      */
@@ -22,7 +23,7 @@ public class FilingTest {
         Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
       assertEquals(50,test.getPrice());
     }
-  
+
     /**
      * Tests if the Constructor and getType() method works
      */
@@ -60,5 +61,5 @@ public class FilingTest {
   }
 
 
-  
+
 }
