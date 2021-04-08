@@ -15,7 +15,9 @@ In Terminal:
 2. Add to this folder a lib folder containing MySQL connector files.
 3. In the console, direct to the desktop folder using cd < filepath >
 4. To compile, use command --> javac -cp .:lib/mysql-connector-java-8.0.23.jar:. edu/ucalgary/ensf409/*.java
-5. To run, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.Main
+5. To run:
+- console version, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.Main
+- GUI version, use command --> java -cp .:lib/mysql-connector-java-8.0.23.jar:. edu.ucalgary.ensf409.GUI
 
 ## Requirements
 JDK <br /> 
