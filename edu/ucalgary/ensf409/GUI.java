@@ -1,3 +1,11 @@
+/**
+@authors  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+          Nicolas Teng :
+          Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
+          Alden Lien :
+@version 1.3
+@since 1.0
+*/
 
 package edu.ucalgary.ensf409;
 
@@ -31,7 +39,6 @@ public class GUI extends JFrame implements ActionListener{
   public GUI(){
       super("Group 62 - Supply Chain Management");
       setupGUI();
-      //setSize(600,170);
       setSize(400,200);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
@@ -91,21 +98,18 @@ public class GUI extends JFrame implements ActionListener{
 
       JPanel headerPanel = new JPanel();
       headerPanel.setLayout(new FlowLayout());
-      //headerPanel.setBackground(new Color(224,224,224));
-      headerPanel.setBackground(new Color(186,213,255));
-      //headerPanel.setBackground(new Color(165, 214, 109));
+      //headerPanel.setBackground(new Color(186,213,255));
+      headerPanel.setBackground(new Color(181, 173, 165));
 
       JPanel clientPanel = new JPanel();
       clientPanel.setLayout(new FlowLayout());
-      //clientPanel.setBackground(new Color(203,203,203));
-      clientPanel.setBackground(new Color(209,227,255));
-      //clientPanel.setBackground(new Color(209,240,175));
+      //clientPanel.setBackground(new Color(209,227,255));
+      clientPanel.setBackground(new Color(209, 193, 176));
 
       JPanel submitPanel = new JPanel();
       submitPanel.setLayout(new FlowLayout());
-      //submitPanel.setBackground(new Color(224,224,224));
-      submitPanel.setBackground(new Color(186,213,255));
-      //submitPanel.setBackground(new Color(165, 214, 109));
+      //submitPanel.setBackground(new Color(186,213,255));
+      submitPanel.setBackground(new Color(181, 173, 165));
 
       headerPanel.add(instructions);
       clientPanel.add(frLabel);
@@ -155,7 +159,6 @@ public class GUI extends JFrame implements ActionListener{
         allInputValid = false;
         JOptionPane.showMessageDialog(this, "Invalid order request. Please select a furniture, category and amount.");
       }
-
       return allInputValid;
   }
 
