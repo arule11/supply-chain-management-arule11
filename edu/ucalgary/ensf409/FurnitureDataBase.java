@@ -115,7 +115,7 @@ public class FurnitureDataBase{
   /**
   * Adds all furniture of the type specified to the list of foundFurniture
   */
-  public void addFurniture(){
+  public void addFurniture() throws InvalidOrderException{
     try{
         String category = getRequestType().toLowerCase();
         boolean invalid = true;
@@ -143,8 +143,9 @@ public class FurnitureDataBase{
             break;
         }
         if(invalid){
-          System.out.println("Invalid furniture request");
-          System.exit(0);
+          throw new InvalidOrderException();
+          // System.out.println("Invalid furniture request");
+          // System.exit(0);
         }
 
       Statement myStmt = dbConnect.createStatement();
