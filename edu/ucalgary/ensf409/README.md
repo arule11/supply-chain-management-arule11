@@ -2,7 +2,7 @@
 
 ## Contributors
 Athena McNeil-Roberts <br /> 
-Nicolas <br /> 
+Nicolas Teng <br /> 
 Ivan Lou Tompong <br /> 
 Alden <br /> 
 
