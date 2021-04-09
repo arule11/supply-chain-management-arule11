@@ -1,7 +1,7 @@
 /**
 @author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : nicolas.teng@ucalgary.ca
-          Ivan Lou Tompong :
+          Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
 @version 1.6
 @since 1.0
@@ -86,7 +86,7 @@ public class Main{
   * @param type : the cropped order as typed by the user
   */
   public static void getThirdArg(String order){
-    Pattern pattern = Pattern.compile("0|[1-9]+");
+    Pattern pattern = Pattern.compile("0|-?[1-9]+");
     Matcher matcher = pattern.matcher(order);
     String arg2;
 
