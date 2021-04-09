@@ -1,5 +1,5 @@
 /**
-@author  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+@author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
@@ -157,7 +157,7 @@ public class GUI extends JFrame implements ActionListener{
 
       if(furnitureRequest.equals("Select")){
         allInputValid = false;
-        JOptionPane.showMessageDialog(this, "Invalid order request. Please select a furniture, category and amount.");
+        JOptionPane.showMessageDialog(this, "Invalid order request. Please select a furniture, category and amount.", "Invalid Order", JOptionPane.WARNING_MESSAGE);
       }
       return allInputValid;
   }
