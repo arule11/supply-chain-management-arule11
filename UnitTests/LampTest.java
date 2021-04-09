@@ -20,7 +20,7 @@ public class LampTest {
     @Test
     public void testContructorAndGetID(){
       Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
-      assertEquals("L013",test.getID());
+      assertEquals("ID was not assigned properly by Contructor","L013",test.getID());
     }
 
     /**
@@ -29,7 +29,7 @@ public class LampTest {
     @Test
     public void testConstructorAndGetPrice(){
         Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
-      assertEquals(18,test.getPrice());
+      assertEquals("Price was not set correctly by Constructor",18,test.getPrice());
     }
 
     /**
@@ -38,7 +38,7 @@ public class LampTest {
     @Test 
   public void testConstructorAndGetType(){
     Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
-    assertEquals("Desk", test.getType());
+    assertEquals("Type was not set correctly by Constructor","Desk", test.getType());
   }
 
   /**
@@ -47,7 +47,7 @@ public class LampTest {
   @Test 
   public void testConstructorAndGetBulb(){
     Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
-    assertEquals("N", test.getBulb());
+    assertEquals("Component status was not properly set by constructor","N", test.getBulb());
   }
 
   /**
@@ -56,7 +56,7 @@ public class LampTest {
   @Test 
   public void testConstructorAndGetBase(){
     Lamp test = new Lamp("L013", "Desk", "Y", "N", 18);
-    assertEquals("Y", test.getBase());
+    assertEquals("Component status was not properly set by constructor","Y", test.getBase());
   }
 
 
