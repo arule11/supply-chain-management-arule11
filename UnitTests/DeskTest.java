@@ -20,7 +20,7 @@ public class DeskTest {
   @Test
   public void testContructorAndGetID(){
     Desk test = new Desk("D0890", "Traditional", "N", "N", "Y", 25);
-    assertEquals("D0890",test.getID());
+    assertEquals("ID was not set properly by the constructor","D0890",test.getID());
   }
 
   /**
@@ -29,7 +29,7 @@ public class DeskTest {
   @Test
   public void testConstructorAndGetPrice(){
     Desk test = new Desk("D0890", "Traditional", "N", "N", "Y", 25);
-    assertEquals(25,test.getPrice());
+    assertEquals("Price was not set properly by the constructor",25,test.getPrice());
   }
 
   /**
@@ -38,7 +38,7 @@ public class DeskTest {
   @Test
   public void testConstructorAndGetLegs(){
     Desk test = new Desk("D0890", "Traditional", "N", "N", "Y", 25);
-    assertEquals("N",test.getLegs());
+    assertEquals("Component status not set properly by the constructor","N",test.getLegs());
   }
 
   /**
@@ -48,7 +48,7 @@ public class DeskTest {
   @Test 
   public void testConstructorAndGetDrawer(){
     Desk test = new Desk("D0890", "Traditional", "N", "N", "Y", 25);
-    assertEquals("Y", test.getDrawer());
+    assertEquals("Component status not set properly by the constructor","Y", test.getDrawer());
   }
 
   /**
@@ -57,7 +57,7 @@ public class DeskTest {
   @Test 
   public void testConstructorAndGetTop(){
     Desk test = new Desk("D0890", "Traditional", "N", "N", "Y", 25);
-    assertEquals("N", test.getTop());
+    assertEquals("Component status not set properly by the constructor","N", test.getTop());
   }
 
 
@@ -67,7 +67,7 @@ public class DeskTest {
   @Test 
   public void testConstructorAndGetType(){
     Desk test = new Desk("D0890", "Traditional", "N", "N", "Y", 25);
-    assertEquals("Traditional", test.getType());
+    assertEquals("Type was not set properly by the constructor","Traditional", test.getType());
   }
 
 
