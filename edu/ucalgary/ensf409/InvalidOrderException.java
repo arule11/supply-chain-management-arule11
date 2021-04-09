@@ -1,5 +1,5 @@
 /**
-@author  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+@author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
@@ -13,6 +13,6 @@ package edu.ucalgary.ensf409;
 */
 public class InvalidOrderException extends Exception{
   public InvalidOrderException(){
-    super("Order must contain a valid furniture and a corresponding category, with an amount");
+    super("Order must contain a valid furniture and a corresponding category, with an amount greater than zero");
   }
 }
