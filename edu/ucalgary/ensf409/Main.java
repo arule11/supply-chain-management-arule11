@@ -3,7 +3,7 @@
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
-@version 1.6
+@version 1.7
 @since 1.0
 */
 
@@ -37,7 +37,7 @@ public class Main{
         }
 
         if(!valid){
-          System.out.println("Invalid number of arguments. Please try again.\nPlease type your furniture request (example: mesh chair, 1)");
+          System.out.println("Invalid argument format. Please try again.\nPlease type your furniture request (example: mesh chair, 1)");
         }else{
           check = false;
         }
@@ -86,13 +86,9 @@ public class Main{
   * @param type : the cropped order as typed by the user
   */
   public static void getThirdArg(String order){
-    Pattern pattern = Pattern.compile("0|-?[1-9]+");
-    Matcher matcher = pattern.matcher(order);
-    String arg2;
-
-    if(matcher.find()){
-      arg2 = matcher.group();
-      arguments[2] = arg2;
+    order = order.trim();
+    if(order.matches("0|-?[1-9]+")){
+      arguments[2] = order;
     }
   }
 
