@@ -20,7 +20,7 @@ public class FilingTest {
     @Test
     public void testContructorAndGetID(){
       Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
-      assertEquals("F001",test.getID());
+      assertEquals("ID was not set properly by the constructor","F001",test.getID());
     }
 
     /**
@@ -29,7 +29,7 @@ public class FilingTest {
     @Test
     public void testConstructorAndGetPrice(){
         Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
-      assertEquals(50,test.getPrice());
+      assertEquals("Price was not set properly by the constructor",50,test.getPrice());
     }
 
     /**
@@ -38,7 +38,7 @@ public class FilingTest {
     @Test 
   public void testConstructorAndGetType(){
     Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
-    assertEquals("Small", test.getType());
+    assertEquals("Type was not set properly by the constructor","Small", test.getType());
   }
 
   /**
@@ -47,7 +47,7 @@ public class FilingTest {
   @Test 
   public void testConstructorAndGetRails(){
     Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
-    assertEquals("Y", test.getRails());
+    assertEquals("Component status not set properly by the constructor","Y", test.getRails());
   }
 
   /**
@@ -56,7 +56,7 @@ public class FilingTest {
   @Test 
   public void testConstructorAndGetDrawers(){
     Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
-    assertEquals("Y", test.getDrawers());
+    assertEquals("Component status not set properly by the constructor","Y", test.getDrawers());
   }
 
   /**
@@ -65,7 +65,7 @@ public class FilingTest {
   @Test 
   public void testConstructorAndGetCabinet(){
     Filing test = new Filing("F001", "Small", "Y", "Y", "N", 50);
-    assertEquals("N", test.getCabinet());
+    assertEquals("Component status not set properly by the constructor","N", test.getCabinet());
   }
 
 
