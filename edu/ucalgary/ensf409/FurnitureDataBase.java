@@ -1,5 +1,5 @@
 /**
-@author  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+@author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
@@ -29,9 +29,9 @@ public class FurnitureDataBase{
 
   /**
   * Set the variables furnitureRequest, requestType, and requestNum based on the given arguments
-  * @param type : the specified specific type of furniture requested 
-  * @param request : the general type of furniture requested 
-  * @param number : the number of furniture items requested 
+  * @param type : the specified specific type of furniture requested
+  * @param request : the general type of furniture requested
+  * @param number : the number of furniture items requested
   */
   public FurnitureDataBase(String type, String request, int number){
     setFurnitureRequest(request);
@@ -118,6 +118,7 @@ public class FurnitureDataBase{
   public void addFurniture() throws InvalidOrderException{
     try{
         String category = getRequestType().toLowerCase();
+        int amount = getRequestNum();
         boolean invalid = true;
         switch(getFurnitureRequest().toLowerCase()){
           case "chair":
@@ -141,6 +142,9 @@ public class FurnitureDataBase{
               invalid = false;
             }
             break;
+        }
+        if(amount <= 0){
+          invalid = true;
         }
         if(invalid){
           throw new InvalidOrderException();
