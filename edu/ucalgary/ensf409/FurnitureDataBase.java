@@ -1,6 +1,6 @@
 /**
 @author  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
-          Nicolas Teng : 
+          Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : 
 @version 1.8
