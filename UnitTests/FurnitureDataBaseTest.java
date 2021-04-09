@@ -1,8 +1,8 @@
 /**
-@author   Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
+@author  Athena McNeil-Roberts : athena.mcneilrobe1@ucalgary.ca
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
-          Alden Lien :
+          Alden Lien : alden.lien@ucalgary.ca
 @version 1.4
 @since 1.0
 */
@@ -82,7 +82,7 @@ public class FurnitureDataBaseTest {
 
     // test invalid order - with furniture that doesnt exist in the database
     @Test(expected = InvalidOrderException.class)
-    public void testConstructor3AddFurnitureInvalid() throws InvalidOrderException{
+    public void testInvalidFurniture() throws InvalidOrderException{
       dataBase = new FurnitureDataBase("water", "bed", 2);
       dataBase.initializeConnection();
       dataBase.addFurniture();
@@ -90,8 +90,32 @@ public class FurnitureDataBaseTest {
 
     // test invalid order - with mismatched combination between two different furniture categories
     @Test(expected = InvalidOrderException.class)
-    public void testConstructor3AddFurnitureMisMatch() throws InvalidOrderException{
+    public void testInvalidMisMatch() throws InvalidOrderException{
       dataBase = new FurnitureDataBase("Mesh", "Desk", 2);
+      dataBase.initializeConnection();
+      dataBase.addFurniture();
+    }
+
+    // test invalid order - type and furniture not in database and 0 amount request
+    @Test(expected = InvalidOrderException.class)
+    public void testInvalidOrderAll() throws InvalidOrderException{
+      dataBase = new FurnitureDataBase("soft", "Sofa", 0);
+      dataBase.initializeConnection();
+      dataBase.addFurniture();
+    }
+
+    // test invalid order - valid furniture, amount equal to zero
+    @Test(expected = InvalidOrderException.class)
+    public void testInvalidOrderMisMatchAmount() throws InvalidOrderException{
+      dataBase = new FurnitureDataBase("Mesh", "Desk", 0);
+      dataBase.initializeConnection();
+      dataBase.addFurniture();
+    }
+
+    // test invalid order - valid furniture but negative amount
+    @Test(expected = InvalidOrderException.class)
+    public void testInvalidOrderNegativeAmount() throws InvalidOrderException{
+      dataBase = new FurnitureDataBase("Mesh", "Desk", -2);
       dataBase.initializeConnection();
       dataBase.addFurniture();
     }
