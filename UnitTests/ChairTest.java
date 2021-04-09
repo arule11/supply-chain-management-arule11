@@ -20,7 +20,7 @@ public class ChairTest{
     @Test
     public void testContructorAndGetID(){
       Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-      assertEquals("C0914",test.getID());
+      assertEquals("ID was not set properly by the constructor","C0914",test.getID());
     }
 
     /**
@@ -29,7 +29,7 @@ public class ChairTest{
     @Test
     public void testConstructorAndGetPrice(){
         Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-      assertEquals(50,test.getPrice());
+      assertEquals("Price was not set properly by the constructor",50,test.getPrice());
     }
 
     /**
@@ -38,7 +38,7 @@ public class ChairTest{
   @Test
   public void testConstructorAndGetType(){
     Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-    assertEquals("Task", test.getType());
+    assertEquals("Type was not set properly by the constructor","Task", test.getType());
   }
 
 
@@ -48,7 +48,7 @@ public class ChairTest{
   @Test 
   public void testConstructorAndGetLegs(){
     Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-    assertEquals("N", test.getLegs());
+    assertEquals("Component was not set properly by the constructor","N", test.getLegs());
   }
 
 
@@ -58,7 +58,7 @@ public class ChairTest{
   @Test 
   public void testConstructorAndGetArms(){
     Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-    assertEquals("N", test.getArms());
+    assertEquals("Component was not set properly by the constructor","N", test.getArms());
   }
 
   /**
@@ -67,7 +67,7 @@ public class ChairTest{
   @Test 
   public void testConstructorAndGetCushion(){
     Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-    assertEquals("Y", test.getCushion());
+    assertEquals("Component was not set properly by the constructor","Y", test.getCushion());
   }
 
 
@@ -77,6 +77,6 @@ public class ChairTest{
   @Test 
   public void testConstructorAndGetSeat(){
     Chair test = new Chair("C0914", "Task", "N", "N", "Y", "Y", 50);
-    assertEquals("Y", test.getSeat());
+    assertEquals("Component was not set properly by the constructor","Y", test.getSeat());
   }
 }
