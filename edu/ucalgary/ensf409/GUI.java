@@ -17,7 +17,9 @@ import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Font;
 
-
+/**
+* Class representing a GUI for the furniture database.
+*/
 public class GUI extends JFrame implements ActionListener{
 
   private String furnitureRequest;
@@ -33,6 +35,9 @@ public class GUI extends JFrame implements ActionListener{
   private JComboBox<String> rtInput;
   private JComboBox<Integer> numInput;
 
+  /**
+  * Titles and set the size of the gui window
+  */
   public GUI(){
       super("Group 62 - Supply Chain Management");
       setupGUI();
@@ -62,6 +67,7 @@ public class GUI extends JFrame implements ActionListener{
     numInput = new JComboBox<>(numbers);
 
     frInput.addActionListener(new ActionListener(){
+      // drop down for category changes depending on the furniture selected
       public void actionPerformed(ActionEvent e){
         String source = (String) frInput.getSelectedItem();
         if(source.equals("Chair")){
@@ -98,17 +104,14 @@ public class GUI extends JFrame implements ActionListener{
 
     JPanel headerPanel = new JPanel();
     headerPanel.setLayout(new FlowLayout());
-      //headerPanel.setBackground(new Color(186,213,255));
     headerPanel.setBackground(new Color(181, 173, 165));
 
     JPanel OrderPanel = new JPanel();
     OrderPanel.setLayout(new FlowLayout());
-      //OrderPanel.setBackground(new Color(209,227,255));
     OrderPanel.setBackground(new Color(209, 193, 176));
 
     JPanel submitPanel = new JPanel();
     submitPanel.setLayout(new FlowLayout());
-      //submitPanel.setBackground(new Color(186,213,255));
     submitPanel.setBackground(new Color(181, 173, 165));
 
     headerPanel.add(instructions);
