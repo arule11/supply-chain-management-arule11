@@ -3,7 +3,7 @@
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
-@version 1.8
+@version 1.10
 @since 1.0
 */
 
@@ -13,6 +13,9 @@ import java.sql.*;
 import java.util.*;
 import java.io.*;
 
+/**
+* Class representing a furniture database.
+*/
 public class FurnitureDataBase{
 
   private final String DBURL = "jdbc:mysql://localhost/inventory"; //Database URL
@@ -120,6 +123,7 @@ public class FurnitureDataBase{
         String category = getRequestType().toLowerCase();
         int amount = getRequestNum();
         boolean invalid = true;
+        // check that the furniture order is one of the four valid types with a valid corresponding category
         switch(getFurnitureRequest().toLowerCase()){
           case "chair":
             if(category.equals("kneeling") || category.equals("task") || category.equals("mesh")
@@ -143,6 +147,7 @@ public class FurnitureDataBase{
             }
             break;
         }
+        // check the amount order is greater than zero
         if(amount <= 0){
           invalid = true;
         }
@@ -152,7 +157,7 @@ public class FurnitureDataBase{
 
       Statement myStmt = dbConnect.createStatement();
       results = myStmt.executeQuery("SELECT * FROM " + furnitureRequest + " WHERE type = '" + requestType + "'");
-
+      // add all of same type of furniture request found in the database to a list
       while (results.next()){
         if(getFurnitureRequest().equalsIgnoreCase("Chair")){
           foundFurniture.add(new Chair(results.getString("ID"), results.getString("Type"), results.getString("Legs"),
@@ -185,7 +190,6 @@ public class FurnitureDataBase{
   */
   public ArrayList<ArrayList<Furniture>> produceOrder(){
     ArrayList<ArrayList<Furniture>> orders = new ArrayList<ArrayList<Furniture>>();
-
     ArrayList<ArrayList<Furniture>> all = getSubsets(getFoundFurniture());
     ArrayList<ArrayList<Furniture>> valid = getValid(all);
     ArrayList<ArrayList<Furniture>> orderedCheapest = comparePrice(valid);
@@ -495,7 +499,7 @@ public class FurnitureDataBase{
   */
   public String printOutputFail(boolean gui){
     String[] manufactIDs = new String[6];
-
+    // get the manufacturers for the specific furniture request
     if(getFurnitureRequest().equalsIgnoreCase("Chair")){
       manufactIDs = Chair.getManufacturers();
     }else if(getFurnitureRequest().equalsIgnoreCase("Desk")){
@@ -522,7 +526,6 @@ public class FurnitureDataBase{
     }
 
     StringBuilder sb = new StringBuilder();
-    // print failed output message to console or GUI
     for(int j = 0; j < names.size(); j++){
       if(j == names.size() - 1){
         sb.append("and " + names.get(j) + ".\n");
@@ -530,6 +533,7 @@ public class FurnitureDataBase{
         sb.append(names.get(j) + ", ");
       }
     }
+    // print failed output message to console or GUI
     if(gui){
       return "Order cannot be fulfilled based on current inventory. Suggested manufacturers are " + sb.toString();
     }
@@ -545,9 +549,7 @@ public class FurnitureDataBase{
   public static String printOutput(ArrayList<ArrayList<Furniture>> purchased, boolean gui){
     StringBuilder sb = new StringBuilder();
     int price = 0;
-    // print order summary message to console or GUI
     sb.append("Purchase ");
-
     for(int i = 0; i < purchased.size(); i++){
       price = price + getComboPrice(purchased.get(i));
       for(int j = 0; j < purchased.get(i).size(); j++){
@@ -563,6 +565,7 @@ public class FurnitureDataBase{
     sb.append(" for $" + price + ".\n");
     // create order form
     writeOrderForm(purchased, price);
+    // print order summary message to console or GUI
     if(gui){
       return sb.toString();
     }
@@ -631,6 +634,9 @@ public class FurnitureDataBase{
     checkOrder(orders, false);
   }
 
+  /**
+  * Runs the program in GUI - computing the requested order
+  */
   public String runGUI(){
     ArrayList<ArrayList<Furniture>> all = getSubsets(getFoundFurniture());
     ArrayList<ArrayList<Furniture>> valid = getValid(all);
