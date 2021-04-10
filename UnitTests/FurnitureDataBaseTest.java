@@ -3,7 +3,7 @@
           Nicolas Teng : nicolas.teng@ucalgary.ca
           Ivan Lou Tompong : ivanlou.tompong@ucalgary.ca
           Alden Lien : alden.lien@ucalgary.ca
-@version 1.4
+@version 1.5
 @since 1.0
 */
 package UnitTests;
@@ -116,6 +116,14 @@ public class FurnitureDataBaseTest {
     @Test(expected = InvalidOrderException.class)
     public void testInvalidOrderNegativeAmount() throws InvalidOrderException{
       dataBase = new FurnitureDataBase("Mesh", "Desk", -2);
+      dataBase.initializeConnection();
+      dataBase.addFurniture();
+    }
+
+    // test invalid order - all numbers
+    @Test(expected = InvalidOrderException.class)
+    public void testInvalidOrderAllNumbers() throws InvalidOrderException{
+      dataBase = new FurnitureDataBase("1323", "09433", 13);
       dataBase.initializeConnection();
       dataBase.addFurniture();
     }
